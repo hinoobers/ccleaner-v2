@@ -1,0 +1,8 @@
+main: org.hinoob.ccleaner.CCleaner
+version: 1
+name: ccleaner
+
+commands:
+  crunmodule:
+  chelp:
+  cmodules:
