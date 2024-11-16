@@ -15,3 +15,5 @@
   <li>/chelp - View help</li>
   <li>/crunmodule [module] - Run a specific module</li>
 </ul>
+
+![image](https://github.com/user-attachments/assets/7a75065a-7878-41d4-8b57-a76b5f21da93)
