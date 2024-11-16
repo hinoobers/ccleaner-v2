@@ -14,8 +14,6 @@ import org.hinoob.ccleaner.CCleaner;
 import org.hinoob.ccleaner.modules.impl.MobStacker;
 import org.hinoob.ccleaner.util.EntityUtils;
 
-import java.lang.ref.Cleaner;
-
 public class StackedListener implements Listener {
 
 

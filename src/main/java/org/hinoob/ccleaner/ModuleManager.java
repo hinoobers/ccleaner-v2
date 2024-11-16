@@ -14,7 +14,7 @@ public class ModuleManager {
     private final List<Module> modules = new ArrayList<>();
 
     public ModuleManager(CCleaner instance) {
-        modules.add(new LogClearer());
+        modules.add(new LogClearer(instance));
         modules.add(new MobDeleter());
         modules.add(new CacheClearer());
         modules.add(new MergeNearItems());

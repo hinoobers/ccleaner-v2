@@ -10,6 +10,12 @@ import java.util.Date;
 
 public class LogClearer extends Module {
 
+    private boolean enabled;
+
+    public LogClearer(CCleaner instance) {
+        this.enabled = instance.getConfig().getBoolean("modules.logclearer.enabled");
+    }
+
     @Override
     public String getName() {
         return "logcleaner";
@@ -22,6 +28,7 @@ public class LogClearer extends Module {
 
     @Override
     public void run(CCleaner instance) {
+        if(!enabled) return;
         getLogger().info("Clearing logs...");
         for(File f : new File(Bukkit.getWorldContainer(), "logs").listFiles()) {
             if(f.getName().equals("latest.log")) continue;

@@ -2,3 +2,5 @@ modules:
   mobstacker:
     enabled: true
     customname: true
+  logclearer:
+    enabled: false # Just incase logs have something important

@@ -32,10 +32,6 @@ public class MobStacker extends Module {
         return 5;
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
     public boolean isCustomName() {
         return customName;
     }
@@ -48,6 +44,7 @@ public class MobStacker extends Module {
             for(LivingEntity entity : w.getLivingEntities()) {
                 if(EntityUtils.isTamed(entity) || EntityUtils.isItem(entity) || entity instanceof Player) continue;
                 if(entity.getType() == EntityType.WITHER || entity.getType() == EntityType.ENDER_DRAGON) continue; // Better not to stack those ha
+                if(entity.getCustomName() != null) continue; // Custom mob, or something weird, better not to stack
 
                 for(Entity nearby : entity.getNearbyEntities(4.0,4.0,4.0)) {
                     if(!(nearby instanceof LivingEntity)) continue;
