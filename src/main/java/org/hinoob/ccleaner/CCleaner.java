@@ -18,7 +18,6 @@ public class CCleaner extends JavaPlugin {
     private static CCleaner instance;
     private ModuleManager moduleManager;
 
-    private int timerIndex;
 
     @Override
     public void onEnable() {
@@ -44,11 +43,13 @@ public class CCleaner extends JavaPlugin {
             moduleManager.getModules().forEach(module -> {
                 if(module.getTimer() < 0) return;
 
-                if(timerIndex % (module.getTimer()*20) == 0) {
+                if(module.ticks > 0) {
+                    module.ticks--;
+                } else {
+                    module.ticks = module.getTimer();
                     module.run(this);
                 }
             });
-            timerIndex++;
         }, 20L, 20L);
     }
 

@@ -5,6 +5,8 @@ import org.hinoob.ccleaner.CCleaner;
 import org.hinoob.ccleaner.modules.Module;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class LogClearer extends Module {
 
@@ -24,7 +26,15 @@ public class LogClearer extends Module {
         for(File f : new File(Bukkit.getWorldContainer(), "logs").listFiles()) {
             if(f.getName().equals("latest.log")) continue;
 
-            f.delete();
+            String name = f.getName().replaceAll(".log.gz", "");
+            String[] split = name.split("-");
+            LocalDate date = LocalDate.of(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+
+            LocalDate now = LocalDate.now();
+            // Delete logs older than 7 days
+            if(date.isBefore(now.minusDays(7))) {
+                f.delete();
+            }
         }
     }
 }
