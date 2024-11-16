@@ -1,6 +1,7 @@
 main: org.hinoob.ccleaner.CCleaner
 version: 1
 name: ccleaner
+author: hinoob
 
 commands:
   crunmodule:
