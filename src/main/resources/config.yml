@@ -2,5 +2,7 @@ modules:
   mobstacker:
     enabled: true
     customname: true
+    disallowed:
+      - VILLAGER
   logclearer:
     enabled: false # Just incase logs have something important

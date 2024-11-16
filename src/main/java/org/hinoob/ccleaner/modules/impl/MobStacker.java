@@ -12,14 +12,19 @@ import org.hinoob.ccleaner.CCleaner;
 import org.hinoob.ccleaner.modules.Module;
 import org.hinoob.ccleaner.util.EntityUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MobStacker extends Module {
 
     private boolean customName;
     private boolean enabled;
+    private List<String> blacklisted = new ArrayList<>();
 
     public MobStacker(CCleaner instance) {
         this.enabled = instance.getConfig().getBoolean("modules.mobstacker.enabled");
         this.customName = instance.getConfig().getBoolean("modules.mobstacker.customname");
+        this.blacklisted = instance.getConfig().getStringList("modules.mobstacker.disallowed");
     }
 
     @Override
@@ -45,6 +50,7 @@ public class MobStacker extends Module {
                 if(EntityUtils.isTamed(entity) || EntityUtils.isItem(entity) || entity instanceof Player) continue;
                 if(entity.getType() == EntityType.WITHER || entity.getType() == EntityType.ENDER_DRAGON) continue; // Better not to stack those ha
                 if(entity.getCustomName() != null) continue; // Custom mob, or something weird, better not to stack
+                if(blacklisted != null && blacklisted.contains(entity.getType().name())) continue;
 
                 for(Entity nearby : entity.getNearbyEntities(4.0,4.0,4.0)) {
                     if(!(nearby instanceof LivingEntity)) continue;
